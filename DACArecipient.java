@@ -1,12 +1,10 @@
 /**
  * Represents one person receiving deferred action for childhood arrivals (DACA).
  * 
- * <TODO add @author info here for all group-mates!>
+ * @author Muhammad Conn
  *
  *	@version 1.1
  **/
-
-//TODO: Complete UML class diagram
 /* UML CLASS DIAGRAM:
 -----------------------------------------
 					DACArecipient
@@ -37,6 +35,10 @@
 + setExpirationDate(expirationDate : int) : void
 + setSex(sex : char) : void
 + setAll(surname:String, givenName:String, uscisNumber:String, countryOfOrigin:String, birthday:int, validFromDate:int, expirationDate:int,sex:char) : void
++ printCard() : String
++ jdnToDate(J:int) : String
++ toString() : String
++ equals(other:DACArecipient) : boolean
 -----------------------------------------
 */
 
@@ -73,10 +75,150 @@ public class DACArecipient
   private char sex;
 
 	/***** ACCESSORS *****/
-	//TODO: Copy the accessors you wrote in the previous lab and insert them here.
+	/**
+	 * Returns the surname of the DACA recipient.
+	 * @return the surname of the DACA recipient.
+	 */
+	public String getSurname()
+	{
+		return surname;
+	}
 
+	/**
+	 * Returns the given name of the DACA recipient.
+	 * @return the given name of the DACA recipient.
+	 */
+	public String getGivenName()
+	{
+		return givenName;
+	}
+
+	/**
+	 * Returns the USCIS number of the DACA recipient.
+	 * @return the USCIS number of the DACA recipient.
+	 */
+	public String getUscisNumber()
+	{
+		return uscisNumber;
+	}
+
+	/**
+	 * Returns the country of origin of the DACA recipient.
+	 * @return the country of origin of the DACA recipient.
+	 */
+	public String getCountryOfOrigin()
+	{
+		return countryOfOrigin;
+	}
+
+	/**
+	 * Returns the birthday of the DACA recipient.
+	 * @return the birthday of the DACA recipient.
+	 */
+	public int getBirthday()
+	{
+		return birthday;
+	}
+
+	/**
+	 * Returns the valid from date of the DACA recipient.
+	 * @return the valid from date of the DACA recipient.
+	 */
+	public int getValidFromDate()
+	{
+		return validFromDate;
+	}
+
+	/**
+	 * Returns the expiration date of the DACA recipient.
+	 * @return the expiration date of the DACA recipient.
+	 */
+	public int getExpirationDate()
+	{
+		return expirationDate;
+	}
+
+	/**
+	 * Returns the sex of the DACA recipient.
+	 * @return the sex of the DACA recipient.
+	 */
+	public char getSex()
+	{
+		return sex;
+	}
+	
 	/***** MUTATORS *****/
-	//TODO: Copy the mutators you wrote in the previous lab and insert them here.
+	/**
+	 * Sets the surname of the DACA recipient.
+	 * @param surname the new surname of the DACA recipient.
+	 */
+	public void setSurname(String newSurname)
+	{
+		surname = newSurname;
+	}
+
+	/**
+	 * Sets the given name of the DACA recipient.
+	 * @param givenName the new given name of the DACA recipient.
+	 */
+	public void setGivenName(String newGivenName)
+	{
+		givenName = newGivenName;
+	}
+
+	/**
+	 * Sets the USCIS number of the DACA recipient.
+	 * @param uscisNumber the new USCIS number of the DACA recipient.
+	 */
+	public void setUscisNumber(String newUscisNumber)
+	{
+		uscisNumber = newUscisNumber;
+	}
+
+	/**
+	 * Sets the country of origin of the DACA recipient.
+	 * @param countryOfOrigin the new country of origin of the DACA recipient.
+	 */
+	public void setCountryOfOrigin(String newCountryOfOrigin)
+	{
+		countryOfOrigin = newCountryOfOrigin;
+	}
+
+	/**
+	 * Sets the birthday of the DACA recipient.
+	 * @param birthday the new birthday of the DACA recipient.
+	 */
+	public void setBirthday(int newBirthday)
+	{
+		birthday = newBirthday;
+	}
+
+	/**
+	 * Sets the valid from date of the DACA recipient.
+	 * @param validFromDate the new valid from date of the DACA recipient.
+	 */
+	public void setValidFromDate(int newValidFromDate)
+	{
+		validFromDate = newValidFromDate;
+	}
+
+	/**
+	 * Sets the expiration date of the DACA recipient.
+	 * @param expirationDate the new expiration date of the DACA recipient.
+	 */
+	public void setExpirationDate(int newExpirationDate)
+	{
+		expirationDate = newExpirationDate;
+	}
+
+	/**
+	 * Sets the sex of the DACA recipient
+	 * @param newSex
+	 */
+	public void setSex(char newSex)
+	{
+		sex = newSex;
+	}
     
   /**DESCRIPTION: Assigns parameters to corresponding instance variables of calling DACArecipient. */
 	public void setAll(String surname, String givenName, String uscisNumber, String countryOfOrigin, int birthday, int validFromDate, int expirationDate, char sex)
@@ -92,10 +234,31 @@ public class DACArecipient
 	}
 
 	/***** OTHER REQUIRED METHODS *****/
-	//TODO: Write the toString method, remember to include documentation 
+	/** DESCRIPTION: Returns a string representation of the DACArecipient object.*/
+	public String toString()
+	{
+		return "Surname:" + surname +
+		"\nGiven Name: " + givenName +
+		"\nUSCIS Number: " + uscisNumber +
+		"\nCountry of Origin: " + countryOfOrigin +
+		"\nBirthday: " + jdnToDate(birthday) +
+		"\nValid From Date: " + jdnToDate(validFromDate) +
+		"\nExpiration Date: " + jdnToDate(expirationDate) +
+		"\nSex: " + sex;
+	}
 
 
-	//TODO: Write the equals method, remember to include documentation
+	public boolean equals (DACArecipient other)
+	{
+		return this.surname.equals(other.surname) &&
+		this.givenName.equals(other.givenName) &&
+		this.uscisNumber.equals(other.uscisNumber) &&
+		this.countryOfOrigin.equals(other.countryOfOrigin) &&
+		this.birthday == other.birthday &&
+		this.validFromDate == other.validFromDate &&
+		this.expirationDate == other.expirationDate &&
+		this.sex == other.sex;
+	}
  
   
 	//TODO: Revise the following method to use the jdnToDate method to format the three dates.
@@ -118,9 +281,9 @@ public class DACArecipient
 		card += String.format("║%-25s%-45S║%n", ASCII_ART_5, LABEL_BIRTH_COUNTRY);
 		card += String.format("║%-25s%-45s║%n", ASCII_ART_6, countryOfOrigin);
 		card += String.format("║%-25s%-15S%-30S║%n", ASCII_ART_7, LABEL_BIRTH_DATE, LABEL_SEX);
-		card += String.format("║%-25s%-15d%-30s║%n", ASCII_ART_8, birthday, sex);
-		card += String.format("║%-25s%-15S%-30d║%n", ASCII_ART_9, LABEL_VALID_DATE, validFromDate);
-		card += String.format("║%-25s%-15S%-30d║%n", "", LABEL_EXPIRE_DATE, expirationDate);
+		card += String.format("║%-25s%-15s%-30s║%n", ASCII_ART_8, jdnToDate(birthday), sex);
+		card += String.format("║%-25s%-15S%-30s║%n", ASCII_ART_9, LABEL_VALID_DATE, jdnToDate(validFromDate));
+		card += String.format("║%-25s%-15S%-30s║%n", "", LABEL_EXPIRE_DATE, jdnToDate(expirationDate));
 		card += String.format("║%-25s%-45s║%n", ASCII_CREDIT, LABEL_REENTRY_DISCLAIMER);
 		card += String.format("╚══════════════════════════════════════════════════════════════════════╝%n");
 		return card;
